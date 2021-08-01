@@ -1,0 +1,1 @@
+const axios = require('axios'); module.exports = { sayHello: function () { return 'hello'; }, addNumbers: function (a, b) { return a + b; }, axiosRequest: async function () { const res = await axios.get('http://192.168.0.45:13000/users/count'); return res.data.count; }, }
