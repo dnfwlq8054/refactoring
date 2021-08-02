@@ -32,4 +32,23 @@ Province에 있는 get/set이 있고 set은 UI에서 입력한 숫자를 파싱�
 
 Producer클래스는 단순한 데이터 저장소로 사용된다.
 
+테스트 코드를 describe안에 it을 여러게 합쳐놓을 때, 
+`cost asia = new Province(sampleProvinceData())` 로 만들어 놓으면,
+
+테스트 끼리 하나의 객체(asia)를 상호작용하는 형태로 상요할 수 있게 되는 공유 픽스처를 생성할 수 있으므로<p>
+다음과 같이 만드는것이 좋다.
+```
+let asia;
+beforEach(funcion() {
+    asia = = new Province(sampleProvinceData());
+})
+```
+
+여기서 픽스처란? 테스트 실행을 위해 베이스라인으로서 사용되는 객체들의 고정된 상태.
+
+이렇게 되면 it을 만나 테스트를 실행할 때 새로운 asia를 사용하게 된다.
+즉, describe안에 있는 모든 테스트들은 똑같은 기준 데이터로부터 시작하게 된다.
+
+# 픽스처 수정하기
+
 
