@@ -4,7 +4,7 @@
 버그를 수정하는 것은 별로 어렵지는 않지만, 찾는 과정이 힘들다.<p>
 
 테스트 코드를 가지고 테스트를 진행하면, 버그가 발생한 지점을 쉽게 파악할 수 있고, 회귀 버그를 잡는데 도움이 많이 된다.<p>
-> 회귀 버그란? 프로그램을 변경하는 중 뜻하지 않게 발생한 버그를 뜻한다.
+* **회귀 버그란?** 프로그램을 변경하는 중 뜻하지 않게 발생한 버그를 뜻한다.
 </br>
 
 ## 테스트 코드를 작성하기 가장 좋은 시점은?
@@ -29,16 +29,46 @@
 </br>
 
 # 테스트 할 샘플 코드
+예시에는 Province 클래스와 Producer 클래스가 있다.
+</br>
 
-Province 클래스와 Producer 클래스가 있다.
-
-Province의 생성자는 smapleProvinceData() 함수가 만들어준 JSON 데이터를 기반으로 실행된다.
-
-Province의 smapleProvinceData()가 있는데, 이는 앞 생성자의 인수로 쓸 JSON 데이터를 생성한다.
-
-Province에 있는 get/set이 있고 set은 UI에서 입력한 숫자를 파싱하여 저장하는 형태이다.
-
-Producer클래스는 단순한 데이터 저장소로 사용된다.
+### Province Class
+*sampleProvinceData()*
+```
+function sampleProvinceData() {
+return {
+name: "Asia",
+producers: [
+{name: "Byzantium", cost: 10, production: 9},
+{name: "Attalia",
+cost: 12, production: 10},
+{name: "Sinope",
+cost: 10, production: 6},
+],
+demand: 30,
+price: 20
+};
+}
+```
+*Province constructor*
+```
+constructor(doc) {
+this._name = doc.name;
+this._producers = [];
+this._totalProduction = 0;
+this._demand = doc.demand;
+this._price = doc.price;
+doc.producers.forEach(d => this.addProducer(new Producer(this, d)));
+}
+addProducer(arg) {
+this._producers.push(arg);
+this._totalProduction += arg.production;
+}
+```
+* Province의 생성자는 smapleProvinceData() 함수가 만들어준 JSON 데이터를 기반으로 실행된다.
+* Province의 smapleProvinceData()가 있는데, 이는 앞 생성자의 인수로 쓸 JSON 데이터를 생성한다.
+* Province에 있는 get/set이 있고 set은 UI에서 입력한 숫자를 파싱하여 저장하는 형태이다.
+* Producer클래스는 단순한 데이터 저장소로 사용된다.
 
 테스트 코드를 describe안에 it을 여러게 합쳐놓을 때, 
 `cost asia = new Province(sampleProvinceData())` 로 만들어 놓으면,
