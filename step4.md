@@ -65,6 +65,19 @@ addProducer(arg) {
 ```
 * Province의 생성자는 smapleProvinceData() 함수가 만들어준 JSON 데이터를 기반으로 실행된다.
 * Province의 smapleProvinceData()가 있는데, 이는 앞 생성자의 인수로 쓸 JSON 데이터를 생성한다.
+
+*Province getter/setter*
+```
+get name()               {return this._name;}
+get producers()          {return this._producers.slice();}
+get totalProduction()    {return this._totalProduction;}
+set totalProduction(arg) {this._totalProduction = arg;}
+get demand()             {return this._demand;}
+set demand(arg)          {this._demand = parseInt(arg);}
+get price()              {return this._price;}
+set price(arg)           {this._price = parseInt(arg);}
+```
+
 * Province에 있는 get/set이 있고 set은 UI에서 입력한 숫자를 파싱하여 저장하는 형태이다.
 * Producer클래스는 단순한 데이터 저장소로 사용된다.
 
