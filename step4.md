@@ -13,7 +13,7 @@
 구현보다 인터페이스에 집중하게 된다는 장점도 있다. 또한 코딩이 완료되는 정확한 시점을 파악할 수 있다.<p>
 
 #### 코딩이 완료되는 시점은?<p>
-*테스트를 모두 통과한 시점이다.*
+<span style="color:red">테스트를 모두 통과한 시점이다.</span>
 </br></br>
 
 ## TDD란?
@@ -34,7 +34,7 @@
 
 ### Province Class
 *sampleProvinceData()*
-```
+```javascript
 function sampleProvinceData() {
     return {
         name: "Asia",
@@ -49,7 +49,7 @@ function sampleProvinceData() {
 }
 ```
 *Province constructor*
-```
+```javascript
 constructor(doc) {
     this._name = doc.name;
     this._producers = [];
@@ -67,7 +67,7 @@ addProducer(arg) {
 * Province의 smapleProvinceData()가 있는데, 이는 앞 생성자의 인수로 쓸 JSON 데이터를 생성한다.
 
 *Province getter/setter*
-```
+```javascript
 get name()               {return this._name;}
 get producers()          {return this._producers.slice();}
 get totalProduction()    {return this._totalProduction;}
@@ -86,7 +86,7 @@ set price(arg)           {this._price = parseInt(arg);}
 
 테스트 끼리 하나의 객체(asia)를 상호작용하는 형태로 상요할 수 있게 되는 공유 픽스처를 생성할 수 있으므로<p>
 다음과 같이 만드는것이 좋다.
-```
+```javascript
 let asia;
 beforEach(funcion() {
     asia = = new Province(sampleProvinceData());
